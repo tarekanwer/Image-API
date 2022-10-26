@@ -14,7 +14,7 @@ const Callback = async (req: express.Request, res: express.Response) => {
   }
   if (!imgName) {
     res.status(400);
-    res.end("Not an available image");
+    res.end("Enter an image name please");
     return;
   }
   const outPath = await SaveImage(imgName, width, height);
