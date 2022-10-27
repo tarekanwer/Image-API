@@ -1,6 +1,6 @@
-import fs from "fs";
-import express from "express";
-import SaveImage from "../services/image";
+import fs from 'fs';
+import express from 'express';
+import SaveImage from '../services/image';
 const Callback = async (req: express.Request, res: express.Response) => {
   const widthStr = req.query?.width;
   const heightStr = req.query?.height;
@@ -9,12 +9,12 @@ const Callback = async (req: express.Request, res: express.Response) => {
   const height = Number(heightStr);
   if (Number.isNaN(width) || Number.isNaN(height)) {
     res.status(400);
-    res.end("Enter valid width and height ! (use numbers please)");
+    res.end('Enter valid width and height ! (use numbers please)');
     return;
   }
   if (!imgName) {
     res.status(400);
-    res.end("Enter an image name please");
+    res.end('Enter an image name please');
     return;
   }
   const { outPath, result } = await SaveImage(imgName, width, height);
@@ -22,12 +22,12 @@ const Callback = async (req: express.Request, res: express.Response) => {
     fs.readFile(outPath, (err, data) => {
       if (err) throw err;
       res.status(200);
-      res.writeHead(200, { "Content-Type": "image/jpeg" });
+      res.writeHead(200, { 'Content-Type': 'image/jpeg' });
       res.end(data); // Send the file data to the browser.
     });
   } else {
     res.status(400);
-    res.end("No file with such name exists");
+    res.end('No file with such name exists');
   }
 };
 
