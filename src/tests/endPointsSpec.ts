@@ -26,4 +26,12 @@ describe("Test endpoint responses", () => {
     expect(response.status).toBe(400);
     done();
   });
+
+  it("should return response 400 for unknown files", async (done) => {
+    const response = await request.get(
+      "/api/images?width=500&height=500&filename=unknown.jpg"
+    );
+    expect(response.status).toBe(400);
+    done();
+  });
 });

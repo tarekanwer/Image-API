@@ -17,13 +17,18 @@ const Callback = async (req: express.Request, res: express.Response) => {
     res.end("Enter an image name please");
     return;
   }
-  const outPath = await SaveImage(imgName, width, height);
-  fs.readFile(outPath, (err, data) => {
-    if (err) throw err;
-    res.status(200);
-    res.writeHead(200, { "Content-Type": "image/jpeg" });
-    res.end(data); // Send the file data to the browser.
-  });
+  const { outPath, result } = await SaveImage(imgName, width, height);
+  if (result) {
+    fs.readFile(outPath, (err, data) => {
+      if (err) throw err;
+      res.status(200);
+      res.writeHead(200, { "Content-Type": "image/jpeg" });
+      res.end(data); // Send the file data to the browser.
+    });
+  } else {
+    res.status(400);
+    res.end("No file with such name exists");
+  }
 };
 
 export default Callback;
