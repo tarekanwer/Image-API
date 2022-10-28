@@ -1,7 +1,7 @@
 ## Image-API
 This project is a part of Advanced fullstack nano degree offered by Udacity. The project aims to build an API using nodejs and express on the top of typescript coupled with jasmine as a testing framework to ensure code sustainability.
 
-##npm scripts 
+## npm scripts 
 npm run start (to start the server)
 npm run test (to start the testing process of the functions and endpoints)
 npm run build (to have the typescript compiled)
